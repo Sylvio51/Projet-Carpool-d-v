@@ -1,29 +1,7 @@
-.container{
+.header{
     display: flex;
     height: 170px;
     width: 1728px;
     background-color: #00B7E0;
     color: #fff
-}
-
-.container .connexion{
-    display: flex;
-    height: 132px;
-    width: 146px;
-    float: right center;
-}
-
-.container span{
-    display: flex;
-    background-color: #fff;
-    border-radius: 50%;
-    height: 111px;
-    width: 110px;
-    align-items: center;
-    justify-content: center;
-}
-
-.container img{
-    height: 92px;
-    width: 92px;
 }
