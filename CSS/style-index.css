@@ -1,3 +1,11 @@
+/* Header */
+nav{
+    background-color: #00B7E0;
+}
+nav img{
+    height: 70px;
+}
+
 .logo{
     width: 200px;
     height: 200px;
@@ -22,7 +30,7 @@
 .img-container {
     position: relative; 
     display: inline-block; 
-  }
+}
   
 .img-container img {
     display: block; 
@@ -46,4 +54,36 @@
     font-size: 40px;
     max-width: 100%;
     max-height: 100%;
+}
+
+/* Publier une annonce */
+#publier_annonce .background-blue{
+    background-color: #00D0FF;
+    height: 600px;
+    width: 100%;
+    display: flex;
+}
+#publier_annonce .batiment-logo{
+    height: 250px;
+    width: 250px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Notez vos covoiturages */
+#avis .background-green{
+    background-color: #1ADB5D;
+    height: 600px;
+    width: 100%;
+    display: flex;
+}
+#avis .phone{
+    left: 100%;
+}
+
+.bas-de-page{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
