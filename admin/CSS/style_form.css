@@ -12,7 +12,7 @@ body{
 .header{
     display: flex;
     height: 170px;
-    width: 1728px;
+    width: 100%;
     background-color: #00B7E0;
     color: #fff;
     justify-content: space-between;
@@ -39,11 +39,24 @@ body{
     margin-right: 66px;
     width: 110px;
     height: 111px;
-    background-color: #fff;
-    border-radius: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.whiteCercle{
+    background-color: #fff;
+    min-width: 110px;
+    min-height: 111px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginHeader p{
+    font-weight: bold;
 }
 
 #logoLogin{
@@ -65,37 +78,70 @@ h2{
    font-size: 64px; 
 }
 
+    /* PERSONNALISATION INPUT */
+
+label{
+    margin-left: 25px;
+}
+
+.form-control{
+    margin-left: 25px;
+    width: 800px;
+}
+
+.title_pwd{
+    margin-top: 25px;
+}
+
     /* PERSONNALISATION INPUT IMAGE */
 
-.labelFile{
+.inputFile {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.form-check{
+    margin-top: 25px;
+}
+
+#photoLabel {
     cursor: pointer;
-    font-weight: bold;
+    width: 220px;
+    height: 195px;
+    border-radius: 50%;
+    float: right;
+    margin-top: -435px;
 }
-
-.labelFile:hover{
-    color: #00B7E0;
-}
-
-.inputFile{
-    display: none;
-}
-
 
 #buttonAnnuler{
     background-color: #9A9A9A;
     border-color: #9A9A9A;
+    width: 140px;
+    height: 65px;
+    border-radius: 50px;
+    margin-right: 10px;
 }
 
 #buttonAccepter{
     background-color: #00D0FF;
     border-color: #00D0FF;
+    width: 183px;
+    height: 65px;
+    border-radius: 50px;
+
 }
 
+.button{
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+}
 /* FOOTER */
 .footer{
     display: flex;
     height: 254px;
-    width: 1728px;
+    width: 100%;
     background-color: #00B7E0;
     justify-content: center;
     align-items: center;
