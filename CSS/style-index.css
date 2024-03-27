@@ -1,6 +1,7 @@
 /* HEADER */
 nav{
     background-color: #00B7E0;
+    position: fixed;
 }
 nav img{
     height: 70px;
@@ -75,23 +76,38 @@ nav img{
     display: flex;
     margin: 248px;
     position: relative;
-    left: 64%;
+    left: 58%;
 }
 #publier_annonce .mns-logo{
-    height: 100px;
+    height: 95px;
     display: flex;
     margin: 250px;
     position: relative;
-    left: 24%;
+    left: 19%;
     top: 2%;
 }
 #publier_annonce .route{
-    height: 40%;
-    width: 79%;
-    position: fixed;
-    top: 28%;
+    height: 60%;
+    width: 75%;
+    margin-top: 18%;
+    position: absolute;
+    top: 0;
     left: 0;
-    
+}
+#publier_annonce .voiture{
+    position: absolute;
+    left: 58%;
+    top: 55%;
+    height: 40%;
+    animation: animationVoiture 3s ease-out;
+}
+@keyframes animationVoiture{
+    0%{
+        transform:translateX(-420%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
 }
 #publier_annonce p{
     font-family: 'Plus Jakarta Plus', sans-serif;

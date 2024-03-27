@@ -35,8 +35,7 @@
             <img class="route" src="imgs/route.png" alt="route">
             <img class="batiment" src="imgs/batiment.png" alt="batiment">
             <img class="mns-logo" src="imgs/MNSlogo.png" alt="mns-logo">
-
-        <!-- <img class="voiture" src="imgs/voiture.png" alt="voiture"> -->
+            <img class="voiture" src="imgs/voiture.png" alt="voiture">
     </div>
     </section>
     <section id="avis">
@@ -54,5 +53,16 @@
         </div>
     </footer>
 </div>
+<script>
+    document.addEventListener('scroll', function() {
+    var voiture = document.querySelector('#publier_annonce .voiture');
+    var voiturePosition = voiture.getBoundingClientRect();
+  
+    // Vérifie si l'élément est visible à l'écran
+    if (voiturePosition.top < window.innerHeight && voiturePosition.bottom >= 0) {
+      voiture.classList.add('visible');
+    }
+  });
+</script>
 </body>
 </html>
