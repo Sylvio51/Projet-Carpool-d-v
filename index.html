@@ -25,15 +25,17 @@
     <div class="bg">
         <img id="image_background" src="imgs/background.jpg" class="rounded mx-auto d-block" alt="fond">
     <form id="search-form">
-        <input class="form-control" type="text" id="departure-input" placeholder="Ville de départ">
+        <input class="form-control" type="text" id="input" placeholder="Ville de départ">
         <select class="form-select" name="destination" id="destination">
             <option value="" selected disabled hidden>Destination</option>
             <option value="MNS">MNS</option>
             <option value="IFA">IFA</option>
         </select>
-        <input class="form-control" type="date" id="departure-date" name="departure-date">
-        <input class="form-control" type="time" id="departure-time" name="departure-time">
-        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Rechercher</button>
+        <div class="datetime-container">
+        <input class="form-control" type="date" id="date" name="date">
+        <input class="form-control" type="time" id="time" name="time">
+    </div>
+        <button class="recherche" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Rechercher</button>
     </form>
     </div>
     </div>
