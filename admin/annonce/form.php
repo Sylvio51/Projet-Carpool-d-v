@@ -1,34 +1,38 @@
 <?php 
-$Id_utilisateur = "";
-$Nom = "";
-$Prenom = "";
-$Email = "";
-$Telephone = "";
-$Adresse = "";
-$Id_Promo = "";
+// $Id_utilisateur = "";
+// $Nom = "";
+// $Prenom = "";
+// $Email = "";
+// $Telephone = "";
+// $Adresse = "";
+// $Promo = "";
+// $NombresDePlaces = "";
+// $Date = "";
+// $Heure = "";
+// $infosup = "";
 
-$sql = "SELECT * FROM annonce";
-$result = $db->query($sql); // Exécution de la requête SQL
+// $sql = "SELECT * FROM annonce";
+// $result = $db->query($sql); // Exécution de la requête SQL
 
-$options = "<option value='' disabled selected>Promo</option>"
+// $options = "<option value='' disabled selected>Promo</option>"
 
-while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    $options .= "<option value='" . $row["Id"] . "'";
-    if($Id_Promo == $row["Id"]) {
-        $options.= "selected"; // Sélectionner l'option
-    }
-    $options .= ">" . $row["Nom"] . "</option>";
-}
+// while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+//     $options .= "<option value='" . $row["Id"] . "'";
+//     if($Id_Promo == $row["Id"]) {
+//         $options.= "selected"; // Sélectionner l'option
+//     }
+//     $options .= ">" . $row["Nom"] . "</option>";
+// }
 
-if ($row) {
-    $Id_utilisateur = $row["Id_utilisateur"];
-    $Nom_utilisateur = $row['Nom'];
-    $Prenom_utilisateur = $row['Prenom'];
-    $Mail_utilisateur = $row["Mail"];
-    $Tel_utilisateur = $row["Tel"];
-    $Id_promo_utilisateur = $row['Promo'];
-    $Adresse_utilisateur = $row["Adresse"];
-}
+// if ($row) {
+//     $Id_utilisateur = $row["Id_utilisateur"];
+//     $Nom_utilisateur = $row['Nom'];
+//     $Prenom_utilisateur = $row['Prenom'];
+//     $Mail_utilisateur = $row["Mail"];
+//     $Tel_utilisateur = $row["Tel"];
+//     $Id_promo_utilisateur = $row['Promo'];
+//     $Adresse_utilisateur = $row["Adresse"];
+// }
 ?>
 
 <!DOCTYPE html>
@@ -36,10 +40,16 @@ if ($row) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/style-index">
+    <link rel="stylesheet" href="/CSS/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/CSS/style-index.css">
     <title>Publier une annonce</title>
 </head>
 <body>
@@ -51,36 +61,53 @@ if ($row) {
     </header>
     <h1 class="d'flex justify-content-center title">Publier un trajet</h1>
     <div class="container">
-        <form action="" class="form" method="POST">
+        <form action="annonce/process.php" class="form" method="POST">
         <h2>Informations sur le conducteur</h2>
         <label for="">Nom :</label>
+        <br>
         <input type="text" name="Nom" id="Nom" placeholder="Nom" 
-        value="<?= $Nom ?>">
+        value="" required>
+        <br>
         <label for="">Prénom :</label>
+        <br>
         <input type="text" name="Prenom" id="Prenom" placeholder="Prenom" 
-        value="<?= $Prenom ?>">
+        value="" required>
+        <br>
         <label for="">Promo :</label>
-        <select name="form-select" id="" value="<?= $Id_promo ?>">
-        <?php echo $options; ?>
+        <br>
+        <select name="promo" id="" value="" required>
+            <option value="" selected disabled hidden>Promo</option>
+            <option value="BSD">BSD</option>
+            <option value="BSRC">BSRC</option>
+            <option value="DEVWEB">DEVWEB</option>
+            <option value="TSSR">TSSR</option>
         </select>
+        <br>
         <label for="">E-mail :</label>
-        <input type="text" name="email" id="email" placeholder="email" 
-        value="<?= $Email ?>">>
+        <br>
+        <input type="text" name="email" id="email" placeholder="E-mail" 
+        value="" required>
+        <br>
         <label for="">Numéro de téléphone :</label>
+        <br>
         <input type="text" name="Num_tel" id="Num_tel" placeholder="Numéro de téléphone" 
-        value="<?= $Numero_tel ?>">>
+        value="" required>
 
         <h2>Détails du trajet</h2>
+        <label for="">Nombres de places :</label>
+        <br>
+        <input type="number" min="2" max="10" name="Nombre_places" required>
+        <br>
         <label for="">Adresse :</label>
+        <br>
         <input name="Adresse" id="Adresse" placeholder="Adresse" 
-        value="<?= $Adresse ?>">
+        value="" required>
+        <br>
         <label for="">Date & heure de trajet :</label>
-        <input type="text" name="Date_heure" id="Date_heure" placeholder="Date & heure" 
-        value="<?= $Date_heure ?>">
-        <label for="">Fréquence du trajet :</label>
-        <select name="form-select" id="">
-            <?php echo $options; ?>
-        </select>
+        <br>
+        <input class="form-control" type="date" id="date" name="date" required>
+        <input class="form-control" type="time" id="time" name="time" required>
+        <br>
 
         <h2>Informations supplémentaires</h2>
         <textarea name="infos_sup" id=""></textarea>
@@ -92,8 +119,8 @@ if ($row) {
         </div>
 
         <div class="button">
-            <button type="button" class="btn btn-primary btn-lg" id="buttonAnnuler">Annuler</button>
-            <button type="button" class="btn btn-primary btn-lg" id="buttonAccepter">Publier</button>
+            <button type="button" class="btn btn-secondary btn-lg" id="buttonAnnuler">Annuler</button>
+            <button type="submit" class="btn btn-primary btn-lg" id="buttonAccepter">Publier</button>
         </div>
         
     </form>
