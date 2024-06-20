@@ -7,14 +7,14 @@ nav .connexion{
     height: 70px;
     display: flex;
     position: relative;
-    left: 89%;
+    left: 1680px;
     order: 1;
 }
 nav .trip{
     height: 70px;
     display: flex;
     position: relative;
-    left: 89%;
+    left: 1500px;
 }
 
 .logo{
@@ -434,7 +434,7 @@ nav .trip{
         height: 40px;
         display: flex;
         position: relative;
-        left: 1%;
+        left: 540%;
         top: -20%;
         order: 1;
     }
@@ -442,8 +442,8 @@ nav .trip{
         height: 49px;
         display: flex;
         position: relative;
-        left: 77%;
-        top: -21%;
+        left: -10%;
+        top: -3%;
     }
     .logo{
         width: 90px;

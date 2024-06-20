@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/connect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . 'admin/include/connect.php';
 $Id_utilisateur = 0;
 $Nom_utilisateur = "";
 $Prenom_utilisateur = "";

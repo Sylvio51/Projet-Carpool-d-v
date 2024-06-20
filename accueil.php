@@ -14,32 +14,14 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
-    <center>
-    <div id="popup-overlay">
-        <div class="popup-content">
-            <a href="javascript:void(0)" onclick="togglePopup()" class="popup-exit">Fermer</a>
-            <br>
-            <img src="imgs/connexion2.png" alt="">
-            <h2>Connexion</h2>
-            <form action="">
-            <input type="text" name="mail" placeholder="Email">
-            <br>
-            <input type="text" name="mdp" placeholder="Mot de passe">
-            <br>
-            <a href="/" class="popup-link">Se connecter</a>
-            <br>
-            <a href="/" class="inscription">Vous n'avez pas de compte ?</a>
-        </form>
-        </div>
-    </div>
-</center>
     <header>
     <div data-aos="fade-right">
     <nav class="navbar navbar-expand-lg">
-
-    
-        <img onclick="togglePopup()" class="connexion" src="imgs/connexion.png" alt="connexion">
+    <a href="connexion.php">
+        <img class="connexion" src="imgs/connexion.png" alt="connexion">
+    </a>
         <img class="trip" src="imgs/TRIP_lutfix.png" alt="trip-lutfix">
+    </div>
     </nav>
     </header>
     <div data-aos="fade-right">
