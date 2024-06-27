@@ -78,6 +78,14 @@ h2{
    font-size: 64px; 
 }
 
+.error-message {
+    /* Styles pour la div contenant le message d'erreur */
+    display: block;
+    background-color: red;
+    color: white;
+    padding: 10px;
+}
+
     /* PERSONNALISATION INPUT */
 
 label{

@@ -1,3 +1,5 @@
+console.log('le fichier js est bien chargé');
+
 const img = document.getElementById('photoLabel');
 const inputFile = document.querySelector('.inputFile');
 
@@ -31,4 +33,33 @@ inputFile.addEventListener('change', (event) => {
   }
   reader.readAsDataURL(file);
 
+});
+
+// Gestion de la création du compte
+const buttonAccepter = document.getElementById('buttonAccepter');
+const form = document.querySelector('form');
+
+buttonAccepter.addEventListener('click', () => {
+  // Empêcher le rechargement de la page
+  console.log('bouton cliqué  ')
+  event.preventDefault();
+
+  // Créer un objet FormData avec les données du formulaire
+  const formData = new FormData(form);
+
+  // Envoyer les données au fichier PHP
+  fetch('form.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+    // Gérer la réponse du serveur
+    console.log(data);
+    // Vous pouvez afficher un message de succès ou d'erreur ici
+  })
+  .catch(error => {
+    console.error('Erreur :', error);
+    // Gérer les erreurs ici
+  });
 });
