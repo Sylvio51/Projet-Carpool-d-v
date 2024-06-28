@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindParam(':Photo_Profil', $Photo_profil_utilisateur_json);
             $stmt->bindParam(':Promo', $Id_promo_utilisateur);
 
+            echo $sql;
             echo "<pre>" . var_dump($sql) . "</pre>";
 
         // Exécuter la requête
@@ -119,7 +120,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             <div class="whiteCercle">
                 <img id="logoLogin" src="/images/login.png" alt="">
             </div>
-            <p>connexion</p>
+            <p>Connexion</p>
         </div>
     </header>
 
