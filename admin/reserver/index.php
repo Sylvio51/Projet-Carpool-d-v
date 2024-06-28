@@ -1,8 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/connect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/protect.php';
 
 $ville_depart = isset($_GET['ville_depart']) ? $_GET['ville_depart'] : '';
-$ville_arrivee = isset($_GET['ville_arrivee']) ? $_GET['ville_arrivee'] : '';
+$ville_arrivee = isset($_GET['ville_arrivee']) ? $_GET['ville_arrivee'] : 0;
 $date = isset($_GET['date']) ? $_GET['date'] : '';
 
 $date = "2023-06-15 10:30:00";
@@ -10,30 +11,24 @@ $ville_depart = "Reims";
 $ville_arrivee = 1;
 
 $sql = "SELECT *
-FROM annonce
+FROM annonce INNER JOIN destination ON annonce.Destination = destination.Id
 WHERE Depart = :ville_depart
   AND Destination = :ville_arrivee
-  AND Date_depart >= :date_depart";
-
-echo $sql;
+  AND Date_depart >= :date_depart
+  AND Nombre_places > 0";
 
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':ville_depart', $ville_depart);
 $stmt->bindParam(':ville_arrivee', $ville_arrivee);
 $stmt->bindParam(':date_depart', $date);
 
-if ($ville_arrivee == 1){
-    $ville_arrivee = "MNS";
-}else{
-    $ville_arrivee = "IFA";
-}
-
 $stmt->execute();
 $annonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,11 +59,10 @@ $annonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php
             if (count($annonces) > 0) {
                 foreach ($annonces as $annonce) {
-                    // Générer le HTML pour afficher les détails de l'annonce
                     echo "<div class='annonce'>";
-                    echo "<h3>De " . $annonce['Depart'] . " à " . $annonce['Destination'] . "</h3>";
+                    echo "<h3>De " . $annonce['Depart'] . " à " . $annonce['Nom'] . "</h3>";
                     echo "<p>Date de départ : " . $annonce['Date_depart'] . "</p>";
-                    // Ajouter d'autres détails de l'annonce ici (prix, nombre de places, etc.)
+                    echo "<button class='btn btn-primary btn-lg btn-reserver' data-id='" . $annonce['Id'] . "'>Réserver</button>";
                     echo "</div>";
                 }
             } else {
@@ -81,5 +75,7 @@ $annonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <img id="logoCarpoolFooter" src="/images/logoCarpool.png" alt="">
         </div>
     </footer>
+
+    <script src="/admin/JS/reserver.js"></script>
 </body>
 </html>
