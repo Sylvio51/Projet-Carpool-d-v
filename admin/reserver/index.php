@@ -1,4 +1,4 @@
-<?php
+x   <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/connect.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/protect.php';
 

@@ -1,7 +1,5 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/connect.php';
-
-$MessageErreur = "";
 $Nom_utilisateur = "";
 $Prenom_utilisateur = "";
 $Mail_utilisateur = "";
@@ -12,7 +10,7 @@ $Mot_de_passe_utilisateur = "";
 $Confirmation_mot_de_passe = "";
 $Photo_profil_utilisateur = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['Mot_de_passe']) && isset($_POST['Confirmation_mot_de_passe'])) {
     var_dump($_POST);
     $Nom_utilisateur = $_POST['Nom'];
     $Prenom_utilisateur = $_POST['Prenom'];
@@ -35,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Confirmation du mot de passe
     if ($Mot_de_passe === $Confirmation_mot_de_passe){
-        // Vérifier si l'adresse e-mail existe déjà dans la base de données
+        // Vérification si l'adresse e-mail existe déjà dans la base de données
         $sql_check_email = "SELECT * FROM utilisateurs WHERE Mail_utilisateur = :email";    
         $stmt_check_email = $db->prepare($sql_check_email);
         $stmt_check_email->bindParam(':email', $Mail_utilisateur);
@@ -62,12 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindParam(':Photo_Profil', $Photo_profil_utilisateur_json);
             $stmt->bindParam(':Promo', $Id_promo_utilisateur);
 
-            echo $sql;
-            echo "<pre>" . var_dump($sql) . "</pre>";
-
         // Exécuter la requête
             if ($stmt->execute()) {
                 echo "Compte créé avec succès.";
+                session_start();
+                $_SESSION['Nom'] = $Nom_utilisateur . " " . $Prenom_utilisateur;
+                header("Location:index.html");
+                exit();
             } else {
                 echo "Une erreur s'est produite lors de la création du compte.";
                 var_dump($stmt->errorInfo());
@@ -165,14 +164,15 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div class="button">
                 <button type="button" class="btn btn-primary btn-lg" id="buttonAnnuler">Annuler</button>
-                <button type="button" class="btn btn-primary btn-lg" id="buttonAccepter">Créer un compte</button>
+                <button type="submit" class="btn btn-primary btn-lg" id="buttonAccepter">Créer un compte</button>
             </div>
-            <?php if ($MessageErreur != "") {
-                    echo "<div class='text-danger'>";
-                        echo "<p>" . $MessageErreur . "</p>";
-                    echo "</div>";
+            <div class='text-danger'>
+            <?php
+                if ($MessageErreur != "") {
+                    echo $MessageErreur;
                 }
-            ?>
+                ?>
+            </div>
         </form>
     </div>
 
