@@ -167,11 +167,12 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 <button type="button" class="btn btn-primary btn-lg" id="buttonAnnuler">Annuler</button>
                 <button type="button" class="btn btn-primary btn-lg" id="buttonAccepter">Créer un compte</button>
             </div>
-            <?php if ($MessageErreur != "") { ?>
-                <div class="text-danger">
-                    <?php echo $MessageErreur; ?>
-                </div>
-            <?php } ?>
+            <?php if ($MessageErreur != "") {
+                    echo "<div class='text-danger'>";
+                        echo "<p>" . $MessageErreur . "</p>";
+                    echo "</div>";
+                }
+            ?>
         </form>
     </div>
 
