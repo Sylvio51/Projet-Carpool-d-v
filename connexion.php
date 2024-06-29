@@ -12,7 +12,7 @@ if(isset($_POST['envoi'])){
         $password = sha1($_POST['Mot_de_passe']);
 
 
-        $req = $connexion->prepare('SELECT * FROM utilisateurs WHERE Mail =? AND Mot_de_passe =?');
+        $req = $connexion->prepare('SELECT * FROM utilisateurs WHERE Mail_utilisateur =? AND Mot_de_passe_utilisateur =?');
         $req->execute(array($email,$password));
         $cpt = $req->rowCount();
 
@@ -26,6 +26,7 @@ if(isset($_POST['envoi'])){
             $_SESSION['Photo_profil'] = $info['Photo_profil'];
             $_SESSION['tel_'] = $info['tel_'];
             $_SESSION['Id_promo'] = $info['Id_promo'];
+            session_start();
             header("Location: profil.php?Id=".$_SESSION['Id']);
             
         }else{
