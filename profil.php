@@ -33,12 +33,12 @@ if(isset($_GET['id']) AND $_GET['id'] > 0){
             <div class="profile-picture">
                 <img src="profile-placeholder.png" alt="Profile Picture">
             </div>
-            <h1><?=$takeinfo['Nom']?> <?=$takeinfo['Prenom']?></h1>
-            <p class="promo">Promo : <?=$takeinfo['Id_promo']?></p>
-            <p class="adresse"></p>
+            <h1><?=$_SESSION['Nom']?> <?=$_SESSION['Prenom']?></h1>
+            <p class="promo">Promo : <?=$_SESSION['Id_promo']?></p>
+            <p class="adresse"> <?= $_SESSION['Adresse']?></p>
             <div class="contact">
-                <p>E-mail : <?=$takeinfo['Mail']?></p>
-                <p>Tel.: <?=$takeinfo['tel_']?></p>
+                <p>E-mail : <?=$_SESSION['Mail']?></p>
+                <p>Tel.: <?=$_SESSION['tel_']?></p>
             </div>
             <button class="modify-profile">Modifier le profil</button>
         </main>
