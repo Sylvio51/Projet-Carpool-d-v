@@ -1,6 +1,11 @@
 <?php 
-require_once $_SERVER["DOCUMENT_ROOT"].'/admin/include/connect.php';
-
+try {
+    $connexion = new PDO('mysql:host=localhost;dbname=carpool', 'root', '');
+    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
+    die();
+}
 if(isset($_POST['envoi'])){
     if(!empty($_POST['Mail']) AND !empty($_POST['Mot_de_passe']) ) {
         $email = htmlspecialchars($_POST['Mail']);
@@ -13,12 +18,10 @@ if(isset($_POST['envoi'])){
         $req->execute();
         $cpt = $req->rowCount();
 
-        echo $req;
         if($cpt == 1){
             $message = "votre compte a bien été trouvé";
             $info = $req->fetch();
-            session_start();
-            $_SESSION['Id'] = $info['Id_utilisateur'];
+            $_SESSION['id'] = $info['id_utilisateur'];
             $_SESSION['Nom'] = $info['Nom_utilisateur'];
             $_SESSION['Prenom'] = $info['Prenom_utilisateur'];
             $_SESSION['Mail'] = $info['Mail_utilisateur'];
@@ -26,7 +29,7 @@ if(isset($_POST['envoi'])){
             $_SESSION['tel_'] = $info['tel_utilisateur'];
             $_SESSION['Id_promo'] = $info['Id_promo_utilisateur'];
             
-            header("Location: profil.php");
+            header("Location: profil.php?id=".$_SESSION['id']);
             
         }else{
             $message="Email ou mot de passe incorrect";

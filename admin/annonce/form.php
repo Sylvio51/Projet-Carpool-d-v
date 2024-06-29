@@ -7,62 +7,59 @@ try {
     die();
 }
 
-$Nom = "";
-$Prenom = "";
-$Mail = "";
-$Tel = "";
-$Promo = "";
-$Adresse = "";
+$Nom_utilisateur = "";
+$Prenom_utilisateur = "";
+$Mail_utilisateur = "";
+$Tel_utilisateur = "";
+$Id_promo_utilisateur = "";
+$Adresse_utilisateur = "";
 
-$NombresPlaces = "";
-$DateDepart = "";
+$Nombre_places = "";
+$Date_Depart = "";
 $Destination = "";
 $Depart = "";
-$Heure = "";
 $InfoSup = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $Nom = $_POST['Nom'];
-    $Prenom = $_POST['Prenom'];
-    $Mail = $_POST["Mail"];
-    $Tel = $_POST["tel_"];
-    $Promo = $_POST['Id_promo'];
-    $Adresse = $_POST["Adresse"];
-    $NombresPlaces = $_POST["Nombre_places"];
-    $DateDepart = $_POST["Date_depart"];
+    $Nom_utilisateur = $_POST['Nom_utilisateur'];
+    $Prenom_utilisateur = $_POST['Prenom_utilisateur'];
+    $Mail_utilisateur = $_POST["Mail_utilisateur"];
+    $Tel_utilisateur = $_POST["tel_utilisateur"];
+    $Id_promo_utilisateur = $_POST['Id_promo_utilisateur'];
+    $Adresse_utilisateur = $_POST["Adresse"];
+    $Nombre_places = $_POST["Nombre_places"];
+    $Date_Depart = $_POST["Date_Depart"];
     $Destination = isset($_POST["Destination"]) ? $_POST["Destination"] : "";
     //$Destination = $_POST["Destination"];
     $Depart = $_POST["Depart"];
-    $Heure = $_POST["heure"];
     $InfoSup = $_POST["info_sup"];
 
     try{
     $db = $connexion;
     $db->beginTransaction();
 
-            $sql1 = "INSERT INTO utilisateurs (Nom, Prenom, Mail, Adresse, tel_, Id_promo)
-            VALUE (:Nom, :Prenom, :Mail, :Adresse, :tel_, :Id_promo)";
+            $sql1 = "INSERT INTO utilisateurs (Nom_utilisateur, Prenom_utilisateur, Mail_utilisateur, Adresse_utilisateur, tel_utilisateur, Id_promo_utilisateur)
+            VALUE (:Nom_utilisateur, :Prenom_utilisateur, :Mail_utilisateur, :Adresse_utilisateur, :tel_utilisateur, :Id_promo_utilisateur)";
             $stmt1 = $db->prepare($sql1);
 
-            $stmt1->bindParam(':Nom', $Nom);
-            $stmt1->bindParam(':Prenom', $Prenom);
-            $stmt1->bindParam(':Mail', $Mail);
-            $stmt1->bindParam(':Adresse', $Adresse);
-            $stmt1->bindParam(':tel_', $Tel);
-            $stmt1->bindParam(':Id_promo', $Promo);
+            $stmt1->bindParam(':Nom_utilisateur', $Nom_utilisateur);
+            $stmt1->bindParam(':Prenom_utilisateur', $Prenom_utilisateur);
+            $stmt1->bindParam(':Mail_utilisateur', $Mail_utilisateur);
+            $stmt1->bindParam(':Adresse_utilisateur', $Adresse_utilisateur);
+            $stmt1->bindParam(':tel_utilisateur', $Tel_utilisateur);
+            $stmt1->bindParam(':Id_promo_utilisateur', $Id_promo_utilisateur);
 
             $stmt1->execute();
 
             
-            $sql2 = "INSERT INTO annonce (Nombre_places, Date_depart, Destination, Depart, heure, info_sup)
-            VALUE (:Nombre_places, :Date_depart, :Destination, :Depart, :heure, :info_sup)";
+            $sql2 = "INSERT INTO annonce (Nombre_places, Date_Depart, Destination, Depart, info_sup)
+            VALUE (:Nombre_places, :Date_Depart, :Destination, :Depart, :info_sup)";
             $stmt2 = $db->prepare($sql2);
 
-            $stmt2->bindParam(':Nombre_places', $NombresPlaces);
-            $stmt2->bindParam(':Date_depart', $DateDepart);
+            $stmt2->bindParam(':Nombre_places', $Nombre_places);
+            $stmt2->bindParam(':Date_Depart', $Date_Depart);
             $stmt2->bindParam(':Destination', $Destination);
             $stmt2->bindParam(':Depart', $Depart);
-            $stmt2->bindParam(':heure', $Heure);
             $stmt2->bindParam(':info_sup', $InfoSup);
 
             $stmt2->execute();
@@ -135,29 +132,29 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
         <h2>Informations sur le conducteur</h2>
         <label for="">Nom :</label>
         <br>
-        <input type="text" name="Nom" id="Nom" placeholder="Nom" 
-        value="<?php $Nom ?>" required>
+        <input type="text" name="Nom_utilisateur" id="Nom_utilisateur" placeholder="Nom" 
+        value="<?php $Nom_utilisateur ?>" required>
         <br>
         <label for="">Prénom :</label>
         <br>
-        <input type="text" name="Prenom" id="Prenom" placeholder="Prenom" 
-        value="<?php $Prenom ?>" required>
+        <input type="text" name="Prenom_utilisateur" id="Prenom_utilisateur" placeholder="Prenom" 
+        value="<?php $Prenom_utilisateur ?>" required>
         <br>
         <label for="">Promo :</label>
         <br>
-        <select name="Id_promo" id="Id_promo" value="<?php $Promo ?>" required>
+        <select name="Id_promo_utilisateur" id="Id_promo_utilisateur" value="<?php $Id_promo_utilisateur ?>" required>
             <?php echo $options1 ?>
         </select>
         <br>
         <label for="">E-mail :</label>
         <br>
-        <input type="email" name="Mail" id="Mail" placeholder="E-mail" 
-        value="<?php $Mail ?>" required>
+        <input type="email" name="Mail_utilisateur" id="Mail_utilisateur" placeholder="E-mail" 
+        value="<?php $Mail_utilisateur ?>" required>
         <br>
         <label for="">Numéro de téléphone :</label>
         <br>
-        <input type="text" name="tel_" id="tel_" placeholder="Numéro de téléphone" 
-        value="<?php $Tel ?>" required>
+        <input type="text" name="tel_utilisateur" id="tel_utilisateur" placeholder="Numéro de téléphone" 
+        value="<?php $Tel_utilisateur ?>" required>
 
         <h2>Détails du trajet</h2>
         <label for="">Ville de départ :</label>
@@ -172,17 +169,17 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
         <br>
         <label for="">Nombres de places :</label>
         <br>
-        <input type="number" min="2" max="10" name="Nombre_places" value="<?php $NombresPlaces ?>" required>
+        <input type="number" min="2" max="10" name="Nombre_places" value="<?php $Nombre_places ?>" required>
         <br>
         <label for="">Adresse :</label>
         <br>
-        <input name="Adresse" id="Adresse" placeholder="Adresse" 
-        value="<?php $Adresse ?>" required>
+        <input name="Adresse_utilisateur" id="Adresse_utilisateur" placeholder="Adresse" 
+        value="<?php $Adresse_utilisateur ?>" required>
         <br>
         <label for="">Date & heure de trajet :</label>
         <br>
-        <input class="form-control" type="date" id="Date_depart" name="Date_depart" value="<?php $DateDepart ?>" required>
-        <input class="form-control" type="time" id="heure" name="heure" value="<?php $Heure ?>" required>
+        <input class="form-control" type="date" id="Date_Depart" name="Date_Depart" value="<?php $Date_Depart ?>" required>
+        <input class="form-control" type="time" id="Date_Depart" name="Date_Depart" value="<?php $Date_Depart ?>" required>
         <br>
 
         <h2>Informations supplémentaires</h2>
@@ -195,7 +192,7 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
         </div>
 
         <div class="button">
-            <button type="button" onclick="location.href='projet-carpool-d-v/accueil.php'" class="btn btn-secondary btn-lg" id="buttonAnnuler">Annuler</button>
+            <button type="button" onclick="location.href='accueil.php'" class="btn btn-secondary btn-lg" id="buttonAnnuler">Annuler</button>
             <button type="submit" class="btn btn-primary btn-lg" id="buttonAccepter">Publier</button>
         </div>
         
