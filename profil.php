@@ -33,9 +33,9 @@
             <div class="profile-picture">
                 <img src="profile-placeholder.png" alt="Profile Picture">
             </div>
-            <h1><?=$_SESSION['Nom']?> <?=$_SESSION['Prenom']?></h1>
-            <p class="promo">Promo : <?=$_SESSION['Id_promo']?></p>
-            <p class="adresse"><?=$_SESSION['Adresse']?></p>
+            <h1><?=$takeinfo['Nom']?> <?=$takeinfo['Prenom']?></h1>
+            <p class="promo">Promo : <?=$takeinfo['Id_promo']?></p>
+            <p class="adresse"></p>
             <div class="contact">
                 <p>E-mail : <?=$_SESSION['Mail']?></p>
                 <p>Tel.: <?=$_SESSION['tel_']?></p>
