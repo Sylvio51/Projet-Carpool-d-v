@@ -23,3 +23,29 @@ reserverBtns.forEach(btn => {
         }
     });
 });
+
+function envoyerEmailAnnonceur(annonceId) {
+    $.ajax({
+      url: '/admin/reserver/reserver.php',
+      type: 'POST',
+      data: { annonceId: annonceId },
+      success: function(response) {
+        if (response.success) {
+          var emailAnnonceur = response.emailAnnonceur;
+  
+          $.ajax({
+            url: '/admin/envoieAutoMessage.php',
+            type: 'POST',
+            data: { email: emailAnnonceur },
+            success: function(response) {
+              console.log(response);
+            }
+          });
+        } else {
+          console.error(response.message);
+        }
+      }
+    });
+  }
+
+envoyerEmailAnnonceur(annonceId);

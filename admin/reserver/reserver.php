@@ -32,6 +32,13 @@ if ($nombrePlaces > 0) {
     $stmt->bindParam(':dateDepart', $dateDepart);
     $stmt->execute();
 
+    $sql = "SELECT Mail_utilisateur FROM utilisateurs WHERE Id_utilisateur = (SELECT Id_utilisateur FROM annonce WHERE Id = :annonceId)";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':annonceId', $annonceId);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $emailAnnonceur = $result['Mail_utilisateur'];
+
     $response = array('success' => true);
 } else {
     $response = array('success' => false, 'message' => 'Désolé, il n\'y a plus de places disponibles pour cette annonce. Veuillez réserver une autre annonce.');

@@ -1,6 +1,7 @@
 x   <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/connect.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/protect.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/envoieAutoMessage.php';
 
 $ville_depart = isset($_GET['ville_depart']) ? $_GET['ville_depart'] : '';
 $ville_arrivee = isset($_GET['ville_arrivee']) ? $_GET['ville_arrivee'] : 0;
