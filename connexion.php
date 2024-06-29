@@ -19,13 +19,13 @@ if(isset($_POST['envoi'])){
         if($cpt == 1){
             $message = "votre compte a bien été trouvé";
             $info = $req->fetch();
-            $_SESSION['Id'] = $info['Id'];
-            $_SESSION['Nom'] = $info['Nom'];
-            $_SESSION['Prenom'] = $info['Prenom'];
-            $_SESSION['Mail'] = $info['Mail'];
-            $_SESSION['Photo_profil'] = $info['Photo_profil'];
-            $_SESSION['tel_'] = $info['tel_'];
-            $_SESSION['Id_promo'] = $info['Id_promo'];
+            $_SESSION['Id'] = $info['Id_utilisateur'];
+            $_SESSION['Nom'] = $info['Nom_utilisateur'];
+            $_SESSION['Prenom'] = $info['Prenom_utilisateur'];
+            $_SESSION['Mail'] = $info['Mail_utilisateur'];
+            $_SESSION['Photo_profil'] = $info['Photo_profil_utilisateur'];
+            $_SESSION['tel_'] = $info['tel_utilisateur'];
+            $_SESSION['Id_promo'] = $info['Id_promo_utilisateur'];
             session_start();
             header("Location: profil.php?Id=".$_SESSION['Id']);
             
