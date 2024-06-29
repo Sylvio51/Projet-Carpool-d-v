@@ -17,20 +17,53 @@ if(isset($_GET['id']) AND $_GET['id'] > 0){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/profil.css">
     <title>Profil</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1> <?=$takeinfo['Nom']?> </h1>
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="profile-icon">
+                <img src="profile-icon.png" alt="Profile Icon">
+            </div>
+        </header>
+        <main>
+            <div class="profile-picture">
+                <img src="profile-placeholder.png" alt="Profile Picture">
+            </div>
+            <h1><?=$takeinfo['Nom']?> <?=$takeinfo['Prenom']?></h1>
+            <p class="promo">Promo : <?=$takeinfo['Id_promo']?></p>
+            <p class="adresse"></p>
+            <div class="contact">
+                <p>E-mail : <?=$takeinfo['Mail']?></p>
+                <p>Tel.: <?=$takeinfo['tel_']?></p>
+            </div>
+            <button class="modify-profile">Modifier le profil</button>
+        </main>
+        <footer>
+            <img src="/imgs/logo carpool" alt="Footer" class="footer-logo">
+            <br>
+        </footer>
+        <a href="">Se déconnecter</a>
+    </div>
+</body>
+</html>
+
+
+
+
+    <!-- <h1> <?=$takeinfo['Nom']?> </h1>
     <h1> <?=$takeinfo['Prenom']?> </h1>
     <h1> <?=$takeinfo['Mail']?> </h1>
     <h1> <?=$takeinfo['Photo_profil']?> </h1>
     <h1> <?=$takeinfo['tel_']?> </h1>
-    <h1> <?=$takeinfo['Id_promo']?> </h1>
+    <h1> <?=$takeinfo['Id_promo']?> </h1> -->
 
 
 
 
 
-<a href="">Se déconnecter</a>
 </body>
 </html>

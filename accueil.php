@@ -58,12 +58,12 @@
             <img class="voiture" src="imgs/voiture.png" alt="voiture">
     </div>
     </section>
-    <div data-aos="fade-right">
+    <!-- <div data-aos="fade-right">
     <section id="avis">
         <div class="background-green">
         <div>
             <p>Notez vos covoiturages</p>
-            <button type="button" onclick="location.href='admin/avis/index.php'" class="btn btn-info"><i class="fas fa-comment"></i> Donnez votre avis</button>
+            <button type="button" class="btn btn-info"><i class="fas fa-comment"></i> Donnez votre avis</button>
         </div>
         <div>
             <img class="phonecar" src="imgs/phonecar.png" alt="telephone">
@@ -73,7 +73,7 @@
     </div>
     </section>
 </div>
-<div data-aos="fade-right">
+<div data-aos="fade-right"> -->
     <footer class="footer">
         <div class="logoFooter">
             <img id="logoCarpoolFooter" src="imgs/logo carpool.png" alt="">

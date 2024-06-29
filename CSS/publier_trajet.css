@@ -1,0 +1,17 @@
+nav{
+    background-color: #00B7E0;
+    display: flex;
+}
+nav .conn{
+    height: 70px;
+    display: flex;
+    position: relative;
+    left: 1680px;
+    order: 1;
+}
+nav .trip{
+    height: 70px;
+    display: flex;
+    position: relative;
+    left: 1500px;
+}

@@ -76,7 +76,7 @@ if(isset($_POST['envoi'])){
             </i>
 
             <p>
-            Vous n'avez pas de compte ? <a href="" class="inscription">S'inscrire</a>
+            Vous n'avez pas de compte ? <a href="admin/utilisateurs/form.php" class="inscription">S'inscrire</a>
             </p>
         </form>
         </div>

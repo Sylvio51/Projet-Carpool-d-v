@@ -16,6 +16,7 @@ $Adresse = "";
 
 $NombresPlaces = "";
 $DateDepart = "";
+$Destination = "";
 $Depart = "";
 $Heure = "";
 $InfoSup = "";
@@ -29,15 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $Adresse = $_POST["Adresse"];
     $NombresPlaces = $_POST["Nombre_places"];
     $DateDepart = $_POST["Date_depart"];
+    $Destination = isset($_POST["Destination"]) ? $_POST["Destination"] : "";
+    //$Destination = $_POST["Destination"];
     $Depart = $_POST["Depart"];
     $Heure = $_POST["heure"];
     $InfoSup = $_POST["info_sup"];
 
     try{
-    
+    $db = $connexion;
     $db->beginTransaction();
 
-            $sql1 = "INSERT INTO utilisateurs (Nom_utilisateur, Prenom_utilisateur, Mot_de_passe_utilisateur, Mail_utilisateur, Adresse_utilisateur, tel_utilisateur, Photo_profil_utilisateur, Id_promo_utilisateur)
+            $sql1 = "INSERT INTO utilisateurs (Nom, Prenom, Mail, Adresse, tel_, Id_promo)
             VALUE (:Nom, :Prenom, :Mail, :Adresse, :tel_, :Id_promo)";
             $stmt1 = $db->prepare($sql1);
 
@@ -50,13 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $stmt1->execute();
 
-
-            $sql2 = "INSERT INTO annonce (Nombres_places, Date_depart, Depart, heure, info_sup)
-            VALUE (:Nombres_places, :Date_depart, :Depart, :heure, :info_sup)";
+            
+            $sql2 = "INSERT INTO annonce (Nombre_places, Date_depart, Destination, Depart, heure, info_sup)
+            VALUE (:Nombre_places, :Date_depart, :Destination, :Depart, :heure, :info_sup)";
             $stmt2 = $db->prepare($sql2);
 
-            $stmt2->bindParam(':Nombres_places', $NombresPlaces);
+            $stmt2->bindParam(':Nombre_places', $NombresPlaces);
             $stmt2->bindParam(':Date_depart', $DateDepart);
+            $stmt2->bindParam(':Destination', $Destination);
             $stmt2->bindParam(':Depart', $Depart);
             $stmt2->bindParam(':heure', $Heure);
             $stmt2->bindParam(':info_sup', $InfoSup);
@@ -76,14 +80,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $sql3 = "SELECT * FROM promo";
 $stmt3 = $connexion->query($sql3); 
 
-$options = "<option value='' disabled selected>Sélectionnez votre promo</option>"; 
+$options1 = "<option value='' disabled selected>Sélectionnez votre promo</option>"; 
 
 while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
-    $options .= "<option value='" . $row["Id"] . "'";
+    $options1 .= "<option value='" . $row["Id"] . "'";
     if ($Promo == $row['Id']) {
-        $options .= " selected"; 
+        $options1 .= " selected"; 
     }
-    $options .= ">" . $row["Nom"] . "</option>";
+    $options1 .= ">" . $row["Nom"] . "</option>";
+}
+
+
+$sql4 = "SELECT * FROM destination";
+$stmt4 = $connexion->query($sql4); 
+
+$options2 = "<option value='' disabled selected>Destination</option>"; 
+
+while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
+    $options2 .= "<option value='" . $row["Id"] . "'";
+    if ($Destination == $row['Id']) {
+        $options2 .= " selected"; 
+    }
+    $options2 .= ">" . $row["Nom"] . "</option>";
 }
 ?>
 
@@ -93,6 +111,7 @@ while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/publier_trajet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
@@ -101,13 +120,13 @@ while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>Publier un trajet</title>
+    <title>Publier une annonce</title>
 </head>
 <body>
     <header class="header">
     <nav class="navbar navbar-expand-lg">
-        <img class="connexion" src="imgs/connexion.png" alt="connexion">
-        <img class="trip" src="imgs/TRIP_lutfix.png" alt="trip-lutfix">
+        <img class="conn" src="/imgs/connexion.png" alt="connexion">
+        <img class="trip" src="/imgs/TRIP_lutfix.png" alt="trip-lutfix">
     </nav>
     </header>
     <h1 class="d'flex justify-content-center title">Publier un trajet</h1>
@@ -127,7 +146,7 @@ while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
         <label for="">Promo :</label>
         <br>
         <select name="Id_promo" id="Id_promo" value="<?php $Promo ?>" required>
-            <?php $options; ?>
+            <?php echo $options1 ?>
         </select>
         <br>
         <label for="">E-mail :</label>
@@ -144,6 +163,12 @@ while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
         <label for="">Ville de départ :</label>
         <br>
         <input type="text" name="Depart" id="Depart" placeholder="Ville de départ" value="<?php $Depart ?>" required>
+        <br>
+        <label for="">Destination :</label>
+        <br>
+        <select name="Destination" id="Destination" placeholder="Destination" value="<?php $Destination ?>" required>
+            <?php echo $options2 ?>
+        </select>        
         <br>
         <label for="">Nombres de places :</label>
         <br>
@@ -170,7 +195,7 @@ while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
         </div>
 
         <div class="button">
-            <button type="button" onclick="location.href='accueil.php'" class="btn btn-secondary btn-lg" id="buttonAnnuler">Annuler</button>
+            <button type="button" onclick="location.href='projet-carpool-d-v/accueil.php'" class="btn btn-secondary btn-lg" id="buttonAnnuler">Annuler</button>
             <button type="submit" class="btn btn-primary btn-lg" id="buttonAccepter">Publier</button>
         </div>
         
@@ -179,7 +204,7 @@ while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
 
     <footer>
         <div class="logo">
-            <img src="imgs/logo carpool.png" alt="logo">
+            <img src="/imgs/logo carpool.png" alt="logo">
         </div>
     </footer>
 
