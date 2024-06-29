@@ -1,5 +1,6 @@
 <?php session_start();
 if (!isset($_SESSION['user_connected']) || $_SESSION['user_connected'] != "ok") {
+<<<<<<< HEAD
     header("Location:/admin/login.php");
     exit();
 }
@@ -15,3 +16,9 @@ if (!isset($_SESSION['user_connected']) || $_SESSION['user_connected'] != "ok") 
     
 </body>
 </html>
+=======
+    header("Location:/index.html");
+    exit();
+}
+?>
+>>>>>>> 3d59716b681744a114563079b4c4a890097157aa
