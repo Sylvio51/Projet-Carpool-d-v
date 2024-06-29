@@ -16,19 +16,23 @@ if(isset($_POST['envoi'])){
         $req->execute(array($email,$password));
         $cpt = $req->rowCount();
 
+        echo $req;
         if($cpt == 1){
             $message = "votre compte a bien été trouvé";
-            $info = $req->fetch();
-            $_SESSION['Id'] = $info['Id_utilisateur'];
+            if($info = $req->fetch()){
+                
+            echo $info["Nom_utilisateur"];
+            session_start();
+            $_SESSION['id'] = $info['Id_utilisateur'];
             $_SESSION['Nom'] = $info['Nom_utilisateur'];
             $_SESSION['Prenom'] = $info['Prenom_utilisateur'];
             $_SESSION['Mail'] = $info['Mail_utilisateur'];
             $_SESSION['Photo_profil'] = $info['Photo_profil_utilisateur'];
             $_SESSION['tel_'] = $info['tel_utilisateur'];
             $_SESSION['Id_promo'] = $info['Id_promo_utilisateur'];
-            session_start();
-            header("Location: profil.php?Id=".$_SESSION['Id']);
-            
+            header("Location: profil.php?id=".$_SESSION['id']);
+            exit();
+            }
         }else{
             $message="Email ou mot de passe incorrect";
         }
