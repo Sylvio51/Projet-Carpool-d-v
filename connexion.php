@@ -19,15 +19,14 @@ if(isset($_POST['envoi'])){
         if($cpt == 1){
             $message = "votre compte a bien été trouvé";
             $info = $req->fetch();
-            $_SESSION['id'] = $info['id'];
+            $_SESSION['Id'] = $info['Id'];
             $_SESSION['Nom'] = $info['Nom'];
             $_SESSION['Prenom'] = $info['Prenom'];
             $_SESSION['Mail'] = $info['Mail'];
             $_SESSION['Photo_profil'] = $info['Photo_profil'];
             $_SESSION['tel_'] = $info['tel_'];
             $_SESSION['Id_promo'] = $info['Id_promo'];
-             
-            header("Location: profil.php?id=".$_SESSION['id']);
+            header("Location: profil.php?Id=".$_SESSION['Id']);
             
         }else{
             $message="Email ou mot de passe incorrect";

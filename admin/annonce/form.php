@@ -1,38 +1,90 @@
-<?php 
-// $Id_utilisateur = "";
-// $Nom = "";
-// $Prenom = "";
-// $Email = "";
-// $Telephone = "";
-// $Adresse = "";
-// $Promo = "";
-// $NombresDePlaces = "";
-// $Date = "";
-// $Heure = "";
-// $infosup = "";
+<?php
+try {
+    $connexion = new PDO('mysql:host=localhost;dbname=carpool', 'root', '');
+    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
+    die();
+}
 
-// $sql = "SELECT * FROM annonce";
-// $result = $db->query($sql); // Exécution de la requête SQL
+$Nom = "";
+$Prenom = "";
+$Mail = "";
+$Tel = "";
+$Promo = "";
+$Adresse = "";
 
-// $options = "<option value='' disabled selected>Promo</option>"
+$NombresPlaces = "";
+$DateDepart = "";
+$Depart = "";
+$Heure = "";
+$InfoSup = "";
 
-// while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-//     $options .= "<option value='" . $row["Id"] . "'";
-//     if($Id_Promo == $row["Id"]) {
-//         $options.= "selected"; // Sélectionner l'option
-//     }
-//     $options .= ">" . $row["Nom"] . "</option>";
-// }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $Nom = $_POST['Nom'];
+    $Prenom = $_POST['Prenom'];
+    $Mail = $_POST["Mail"];
+    $Tel = $_POST["tel_"];
+    $Promo = $_POST['Id_promo'];
+    $Adresse = $_POST["Adresse"];
+    $NombresPlaces = $_POST["Nombre_places"];
+    $DateDepart = $_POST["Date_depart"];
+    $Depart = $_POST["Depart"];
+    $Heure = $_POST["heure"];
+    $InfoSup = $_POST["info_sup"];
 
-// if ($row) {
-//     $Id_utilisateur = $row["Id_utilisateur"];
-//     $Nom_utilisateur = $row['Nom'];
-//     $Prenom_utilisateur = $row['Prenom'];
-//     $Mail_utilisateur = $row["Mail"];
-//     $Tel_utilisateur = $row["Tel"];
-//     $Id_promo_utilisateur = $row['Promo'];
-//     $Adresse_utilisateur = $row["Adresse"];
-// }
+    try{
+    
+    $db->beginTransaction();
+
+            $sql1 = "INSERT INTO utilisateurs (Nom_utilisateur, Prenom_utilisateur, Mot_de_passe_utilisateur, Mail_utilisateur, Adresse_utilisateur, tel_utilisateur, Photo_profil_utilisateur, Id_promo_utilisateur)
+            VALUE (:Nom, :Prenom, :Mail, :Adresse, :tel_, :Id_promo)";
+            $stmt1 = $db->prepare($sql1);
+
+            $stmt1->bindParam(':Nom', $Nom);
+            $stmt1->bindParam(':Prenom', $Prenom);
+            $stmt1->bindParam(':Mail', $Mail);
+            $stmt1->bindParam(':Adresse', $Adresse);
+            $stmt1->bindParam(':tel_', $Tel);
+            $stmt1->bindParam(':Id_promo', $Promo);
+
+            $stmt1->execute();
+
+
+            $sql2 = "INSERT INTO annonce (Nombres_places, Date_depart, Depart, heure, info_sup)
+            VALUE (:Nombres_places, :Date_depart, :Depart, :heure, :info_sup)";
+            $stmt2 = $db->prepare($sql2);
+
+            $stmt2->bindParam(':Nombres_places', $NombresPlaces);
+            $stmt2->bindParam(':Date_depart', $DateDepart);
+            $stmt2->bindParam(':Depart', $Depart);
+            $stmt2->bindParam(':heure', $Heure);
+            $stmt2->bindParam(':info_sup', $InfoSup);
+
+            $stmt2->execute();
+
+            $db->commit();
+            echo "Annonce ajoutée avec succès";
+    } catch (PDOException $e) {
+        $db->rollBack();
+        echo "Erreur : ". $e->getMessage();
+    }
+        
+}
+
+
+$sql3 = "SELECT * FROM promo";
+$stmt3 = $connexion->query($sql3); 
+
+$options = "<option value='' disabled selected>Sélectionnez votre promo</option>"; 
+
+while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
+    $options .= "<option value='" . $row["Id"] . "'";
+    if ($Promo == $row['Id']) {
+        $options .= " selected"; 
+    }
+    $options .= ">" . $row["Nom"] . "</option>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +93,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/reset.css">
-    <link rel="stylesheet" href="CSS/accueil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
@@ -50,7 +101,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>Publier une annonce</title>
+    <title>Publier un trajet</title>
 </head>
 <body>
     <header class="header">
@@ -61,56 +112,56 @@
     </header>
     <h1 class="d'flex justify-content-center title">Publier un trajet</h1>
     <div class="container">
-        <form action="process.php" class="form" method="POST">
+        <form action="" class="form" method="POST">
         <h2>Informations sur le conducteur</h2>
         <label for="">Nom :</label>
         <br>
         <input type="text" name="Nom" id="Nom" placeholder="Nom" 
-        value="" required>
+        value="<?php $Nom ?>" required>
         <br>
         <label for="">Prénom :</label>
         <br>
         <input type="text" name="Prenom" id="Prenom" placeholder="Prenom" 
-        value="" required>
+        value="<?php $Prenom ?>" required>
         <br>
         <label for="">Promo :</label>
         <br>
-        <select name="promo" id="" value="" required>
-            <option value="" selected disabled hidden>Promo</option>
-            <option value="BSD">BSD</option>
-            <option value="BSRC">BSRC</option>
-            <option value="DEVWEB">DEVWEB</option>
-            <option value="TSSR">TSSR</option>
+        <select name="Id_promo" id="Id_promo" value="<?php $Promo ?>" required>
+            <?php $options; ?>
         </select>
         <br>
         <label for="">E-mail :</label>
         <br>
-        <input type="text" name="email" id="email" placeholder="E-mail" 
-        value="" required>
+        <input type="email" name="Mail" id="Mail" placeholder="E-mail" 
+        value="<?php $Mail ?>" required>
         <br>
         <label for="">Numéro de téléphone :</label>
         <br>
-        <input type="text" name="Num_tel" id="Num_tel" placeholder="Numéro de téléphone" 
-        value="" required>
+        <input type="text" name="tel_" id="tel_" placeholder="Numéro de téléphone" 
+        value="<?php $Tel ?>" required>
 
         <h2>Détails du trajet</h2>
+        <label for="">Ville de départ :</label>
+        <br>
+        <input type="text" name="Depart" id="Depart" placeholder="Ville de départ" value="<?php $Depart ?>" required>
+        <br>
         <label for="">Nombres de places :</label>
         <br>
-        <input type="number" min="2" max="10" name="Nombre_places" required>
+        <input type="number" min="2" max="10" name="Nombre_places" value="<?php $NombresPlaces ?>" required>
         <br>
         <label for="">Adresse :</label>
         <br>
         <input name="Adresse" id="Adresse" placeholder="Adresse" 
-        value="" required>
+        value="<?php $Adresse ?>" required>
         <br>
         <label for="">Date & heure de trajet :</label>
         <br>
-        <input class="form-control" type="date" id="date" name="date" required>
-        <input class="form-control" type="time" id="time" name="time" required>
+        <input class="form-control" type="date" id="Date_depart" name="Date_depart" value="<?php $DateDepart ?>" required>
+        <input class="form-control" type="time" id="heure" name="heure" value="<?php $Heure ?>" required>
         <br>
 
         <h2>Informations supplémentaires</h2>
-        <textarea name="infos_sup" id=""></textarea>
+        <textarea name="info_sup" id="info_sup" value="<?php $InfoSup ?>"></textarea>
 
         <div>
         <label for="form-check-label">
@@ -119,7 +170,7 @@
         </div>
 
         <div class="button">
-            <button type="button" class="btn btn-secondary btn-lg" id="buttonAnnuler">Annuler</button>
+            <button type="button" onclick="location.href='accueil.php'" class="btn btn-secondary btn-lg" id="buttonAnnuler">Annuler</button>
             <button type="submit" class="btn btn-primary btn-lg" id="buttonAccepter">Publier</button>
         </div>
         

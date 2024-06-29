@@ -50,7 +50,7 @@
 <div data-aos="fade-right">
     <section id="publier_annonce">
         <div class="background-blue">
-            <button type="button" class="btn btn-primary"><i class="fa-solid fa-car"></i> Publier un trajet</button>
+            <button onclick="location.href='admin/annonce/form.php'" type="button" class="btn btn-primary"><i class="fa-solid fa-car"></i> Publier un trajet</button>
             <p>Vous avez une voiture ?</p>
             <img class="route" src="imgs/route.png" alt="route">
             <img class="batiment" src="imgs/batiment.png" alt="batiment">
@@ -63,7 +63,7 @@
         <div class="background-green">
         <div>
             <p>Notez vos covoiturages</p>
-            <button type="button" class="btn btn-info"><i class="fas fa-comment"></i> Donnez votre avis</button>
+            <button type="button" onclick="location.href='admin/avis/index.php'" class="btn btn-info"><i class="fas fa-comment"></i> Donnez votre avis</button>
         </div>
         <div>
             <img class="phonecar" src="imgs/phonecar.png" alt="telephone">
