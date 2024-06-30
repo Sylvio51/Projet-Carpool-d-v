@@ -113,7 +113,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 <body>
     <header class="header">
         <div class="logo">
-            <a href="/acceuil.php"> <img id="logoCarpoolHeader" src="/images/logoCarpool.png" alt=""> </a>
+            <a href="/accueil.php"> <img id="logoCarpoolHeader" src="/images/logoCarpool.png" alt=""> </a>
         </div>
         <div class="loginHeader">
             <div class="whiteCercle">

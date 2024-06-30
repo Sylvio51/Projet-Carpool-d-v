@@ -6,10 +6,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/envoieAutoMessage.php';
 $ville_depart = isset($_GET['ville_depart']) ? $_GET['ville_depart'] : '';
 $ville_arrivee = isset($_GET['ville_arrivee']) ? $_GET['ville_arrivee'] : 0;
 $date = isset($_GET['date']) ? $_GET['date'] : '';
+$heure = isset($_GET['heure']) ? $_GET['heure'] : '';
 
-$date = "2023-06-15 10:30:00";
-$ville_depart = "Reims";
-$ville_arrivee = 1;
+$dateTime = DateTime::createFromFormat('Y-m-d H:i', $date . ' ' . $heure);
+$dateTimeString = $dateTime->format('Y-m-d H:i:s');
 
 $sql = "SELECT *
 FROM annonce INNER JOIN destination ON annonce.Destination = destination.Id
@@ -21,7 +21,7 @@ WHERE Depart = :ville_depart
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':ville_depart', $ville_depart);
 $stmt->bindParam(':ville_arrivee', $ville_arrivee);
-$stmt->bindParam(':date_depart', $date);
+$stmt->bindParam(':date_depart', $dateTimeString);
 
 $stmt->execute();
 $annonces = $stmt->fetchAll(PDO::FETCH_ASSOC);

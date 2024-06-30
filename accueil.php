@@ -11,11 +11,10 @@ $ville_arrivee = isset($_GET['ville_arrivee']) ? $_GET['ville_arrivee'] : 0;
 $date = isset($_GET['date']) ? $_GET['date'] : '';
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && (isset($_GET['ville_depart']) || isset($_GET['ville_arrivee']) || isset($_GET['date']))) {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && (isset($_GET['ville_depart']) || isset($_GET['ville_arrivee']) || isset($_GET['date']) || isset($_GET['heure']))) {
     if ($ville_depart && $ville_arrivee && $date && $time) {
-        $date_depart = $date . ' ' . $time . ':00';
         
-        header("Location: /admin/reserver/index.php ville_depart=$ville_depart&ville_arrivee=$ville_arrivee&date=$date");
+        header("Location: /admin/reserver/index.php?ville_depart=$ville_depart&ville_arrivee=$ville_arrivee&date=$date&heure=$time");
         exit;
     }
 }

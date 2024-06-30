@@ -19,32 +19,32 @@ if(isset($_POST['envoi'])){
         $email = htmlspecialchars($_POST['Mail']);
         $password = password_verify($_POST['Mot_de_passe'], $passwordAccount['Mot_de_passe_utilisateur']);
 
+        if($password = 1){
+            $req = $connexion->prepare('SELECT * FROM utilisateurs WHERE Mail_utilisateur =:Mail');
+            $req -> bindParam(":Mail", $email);
+            $req->execute();
+            $cpt = $req->rowCount();
 
-        $req = $connexion->prepare('SELECT * FROM utilisateurs WHERE Mail_utilisateur =:Mail AND Mot_de_passe_utilisateur =:mot_de_passe');
-        $req -> bindParam(":Mail", $email);
-        $req -> bindParam(":mot_de_passe", $password);
-        $req->execute();
-        $cpt = $req->rowCount();
-
-        if($cpt == 1){
-            $message = "votre compte a bien été trouvé";
-            $info = $req->fetch();
-            $_SESSION['id'] = $info['id_utilisateur'];
-            $_SESSION['Nom'] = $info['Nom_utilisateur'];
-            $_SESSION['Prenom'] = $info['Prenom_utilisateur'];
-            $_SESSION['Mail'] = $info['Mail_utilisateur'];
-            $_SESSION['Photo_profil'] = $info['Photo_profil_utilisateur'];
-            $_SESSION['tel_'] = $info['tel_utilisateur'];
-            $_SESSION['Id_promo'] = $info['Id_promo_utilisateur'];
-            
-            header("Location: profil.php?id=".$_SESSION['id']);
-            
+            if($cpt == 1){
+                $message = "votre compte a bien été trouvé";
+                $info = $req->fetch();
+                $_SESSION['id'] = $info['id_utilisateur'];
+                $_SESSION['Nom'] = $info['Nom_utilisateur'];
+                $_SESSION['Prenom'] = $info['Prenom_utilisateur'];
+                $_SESSION['Mail'] = $info['Mail_utilisateur'];
+                $_SESSION['Photo_profil'] = $info['Photo_profil_utilisateur'];
+                $_SESSION['tel_'] = $info['tel_utilisateur'];
+                $_SESSION['Id_promo'] = $info['Id_promo_utilisateur'];
+                
+                session_start();
+                $_SESSION['connecter'] = 'je suis connecté';
+                header("Location: admin/index.php");
+            }else{
+                $message="Email ou mot de passe incorrect";
+            }
         }else{
-            $message="Email ou mot de passe incorrect";
+            $message="Veuillez remplir tous les champs";
         }
-
-    }else{
-        $message="Veuillez remplir tous les champs";
     }
 }
 ?>
