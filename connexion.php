@@ -28,7 +28,7 @@ if(isset($_POST['envoi'])){
             if($cpt == 1){
                 $message = "votre compte a bien été trouvé";
                 $info = $req->fetch();
-                $_SESSION['id'] = $info['id_utilisateur'];
+                session_start();
                 $_SESSION['Nom'] = $info['Nom_utilisateur'];
                 $_SESSION['Prenom'] = $info['Prenom_utilisateur'];
                 $_SESSION['Mail'] = $info['Mail_utilisateur'];
@@ -36,7 +36,6 @@ if(isset($_POST['envoi'])){
                 $_SESSION['tel_'] = $info['tel_utilisateur'];
                 $_SESSION['Id_promo'] = $info['Id_promo_utilisateur'];
                 
-                session_start();
                 $_SESSION['connecter'] = 'je suis connecté';
                 header("Location: admin/index.php");
             }else{

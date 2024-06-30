@@ -12,14 +12,14 @@ $Photo_profil_utilisateur = "";
 
 if (isset($_POST['Mot_de_passe']) && isset($_POST['Confirmation_mot_de_passe'])) {
     var_dump($_POST);
-    $Nom_utilisateur = $_POST['Nom'];
-    $Prenom_utilisateur = $_POST['Prenom'];
-    $Mail_utilisateur = $_POST["Mail"];
-    $Tel_utilisateur = $_POST["Tel"];
-    $Id_promo_utilisateur = $_POST['Promo'];
-    $Adresse_utilisateur = $_POST["Adresse"];
-    $Mot_de_passe = $_POST["Mot_de_passe"];
-    $Confirmation_mot_de_passe = $_POST["Confirmation_mot_de_passe"];
+    $Nom_utilisateur = htmlspecialchars($_POST['Nom']);
+    $Prenom_utilisateur = htmlspecialchars($_POST['Prenom']);
+    $Mail_utilisateur = htmlspecialchars($_POST["Mail"]);
+    $Tel_utilisateur = htmlspecialchars($_POST["Tel"]);
+    $Id_promo_utilisateur = htmlspecialchars($_POST['Promo']);
+    $Adresse_utilisateur = htmlspecialchars($_POST["Adresse"]);
+    $Mot_de_passe = htmlspecialchars($_POST["Mot_de_passe"]);
+    $Confirmation_mot_de_passe = htmlspecialchars($_POST["Confirmation_mot_de_passe"]);
     $Photo_profil_utilisateur = [
         'name' => $_FILES["Photo_profil"]["name"],
         'type' => $_FILES["Photo_profil"]["type"],
@@ -106,6 +106,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
     <link rel="stylesheet" href="/admin/CSS/style_form.css">
     <title>S'enregistrer</title>
 </head>
@@ -117,7 +118,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         </div>
         <div class="loginHeader">
             <div class="whiteCercle">
-                <a href="/profil.php"> <img id="logoLogin" src="/images/login.png" alt=""> </a>
+                <a href="/connexion.php"> <img id="logoLogin" src="/images/login.png" alt=""> </a>
             </div>
             <p>Connexion</p>
         </div>
@@ -151,10 +152,10 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 value="<?= $Photo_profil_utilisateur ?>">    
             <h2 class='title title_pwd'>Mot de passe</h2>
             <label for="">Mot de passe :</label>
-            <input class="form-control" type="text" placeholder="Créer un mot de passe" id="Mot_de_passe"
+            <input class="form-control" type="password" placeholder="Créer un mot de passe" id="Mot_de_passe"
                 name="Mot_de_passe" value="<?= $Mot_de_passe_utilisateur ?>">
             <label for="">Confirmation mot de passe :</label>
-            <input class="form-control" type="text" placeholder="Confirmer le mot de passe"
+            <input class="form-control" type="password" placeholder="Confirmer le mot de passe"
                 id="Confirmation_mot_de_passe" name="Confirmation_mot_de_passe">
             <div class="form-check">
                 <label class="form-check-label" for="flexCheckDefault">

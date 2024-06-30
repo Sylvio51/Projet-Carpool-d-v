@@ -55,7 +55,7 @@ while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
     <header>
     <div data-aos="fade-right">
     <nav class="navbar navbar-expand-lg">
-    <a href="connexion.php">
+    <a href="profil.php">
         <img class="connexion" src="/imgs/connexion.png" alt="connexion">
     </a>
         <img class="trip" src="/imgs/TRIP_lutfix.png" alt="trip-lutfix">
