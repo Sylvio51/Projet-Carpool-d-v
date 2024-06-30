@@ -8,8 +8,16 @@ try {
 }
 if(isset($_POST['envoi'])){
     if(!empty($_POST['Mail']) AND !empty($_POST['Mot_de_passe']) ) {
+        $email = $_POST['Mail'];
+
+        $stmt = $connexion->prepare("SELECT * FROM utilisateurs WHERE Mail_utilisateur = :Mail");
+        $stmt -> bindParam(":Mail", $email);
+        $stmt -> execute();
+
+        $passwordAccount = $stmt->fetch();
+
         $email = htmlspecialchars($_POST['Mail']);
-        $password = sha1($_POST['Mot_de_passe']);
+        $password = password_verify($_POST['Mot_de_passe'], $passwordAccount['Mot_de_passe_utilisateur']);
 
 
         $req = $connexion->prepare('SELECT * FROM utilisateurs WHERE Mail_utilisateur =:Mail AND Mot_de_passe_utilisateur =:mot_de_passe');

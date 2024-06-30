@@ -62,7 +62,8 @@ $annonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($annonces as $annonce) {
                     echo "<div class='annonce'>";
                     echo "<h3>De " . $annonce['Depart'] . " à " . $annonce['Nom'] . "</h3>";
-                    echo "<p>Date de départ : " . $annonce['Date_depart'] . "</p>";
+                    echo "<p>Date de départ et heure de départ : " . $annonce['Date_depart'] . "</p>";
+                    echo "<p>Nombre de places restantes : " . $annonce['Nombre_places'] . "</p>";
                     echo "<button class='btn btn-primary btn-lg btn-reserver' data-id='" . $annonce['Id'] . "'>Réserver</button>";
                     echo "</div>";
                 }

@@ -168,9 +168,9 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div class='text-danger'>
             <?php
-                if ($MessageErreur != "") {
-                    echo $MessageErreur;
-                }
+                // if ($MessageErreur != "") {
+                    // echo $MessageErreur;
+                // }
                 ?>
             </div>
         </form>

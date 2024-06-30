@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && (isset($_GET['ville_depart']) || isse
     if ($ville_depart && $ville_arrivee && $date && $time) {
         $date_depart = $date . ' ' . $time . ':00';
         
-        header("Location: admin/reserver/index.php?ville_depart=$ville_depart&ville_arrivee=$ville_arrivee&date=$date");
+        header("Location: /admin/reserver/index.php ville_depart=$ville_depart&ville_arrivee=$ville_arrivee&date=$date");
         exit;
     }
 }

@@ -13,6 +13,4 @@ if (!empty($emailAnnonceur)) {
     } else {
         echo "Email non envoyé";
     }
-} else {
-    echo "Aucun email d'annonceur fourni";
 }
