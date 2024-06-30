@@ -107,8 +107,7 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/reset.css">
-    <link rel="stylesheet" href="CSS/publier_trajet.css">
+    <link rel="stylesheet" href="CSS/publier-trajet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
@@ -120,13 +119,20 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
     <title>Publier une annonce</title>
 </head>
 <body>
-    <header class="header">
+<header>
+    <div data-aos="fade-right">
+    <div class="container">
     <nav class="navbar navbar-expand-lg">
-        <img class="conn" src="/imgs/connexion.png" alt="connexion">
+    <a href="connexion.php">
+        <img class="connexion" src="/imgs/connexion.png" alt="connexion">
+    </a>
         <img class="trip" src="/imgs/TRIP_lutfix.png" alt="trip-lutfix">
+    </div>
     </nav>
     </header>
+    <center>
     <h1 class="d'flex justify-content-center title">Publier un trajet</h1>
+    </center>
     <div class="container">
         <form action="" class="form" method="POST">
         <h2>Informations sur le conducteur</h2>
@@ -198,12 +204,6 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
         
     </form>
     </div>
-
-    <footer>
-        <div class="logo">
-            <img src="/imgs/logo carpool.png" alt="logo">
-        </div>
-    </footer>
-
+    </div>
 </body>
 </html>

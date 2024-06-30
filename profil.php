@@ -24,7 +24,9 @@ if(isset($_GET['id']) AND $_GET['id'] > 0){
 <body>
     <div class="container">
         <header>
+            <a href="accueil.php">
         <img src="imgs/logo carpool" alt="" class="carpool-logo">
+        </a>
         </header>
         <main>
             <div class="photo-profil">

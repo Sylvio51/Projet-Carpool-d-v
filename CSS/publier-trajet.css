@@ -2,7 +2,7 @@ nav{
     background-color: #00B7E0;
     display: flex;
 }
-nav .conn{
+nav .connexion{
     height: 70px;
     display: flex;
     position: relative;
@@ -14,4 +14,15 @@ nav .trip{
     display: flex;
     position: relative;
     left: 1500px;
+}
+
+footer {
+    background-color: #007bff;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-logo {
+    height: 100px;
 }

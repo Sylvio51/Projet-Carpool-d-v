@@ -1,3 +1,41 @@
+<?php
+try {
+    $connexion = new PDO('mysql:host=localhost;dbname=carpool', 'root', '');
+    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
+}
+
+$ville_depart = isset($_GET['ville_depart']) ? $_GET['ville_depart'] : '';
+$ville_arrivee = isset($_GET['ville_arrivee']) ? $_GET['ville_arrivee'] : 0;
+$date = isset($_GET['date']) ? $_GET['date'] : '';
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && (isset($_GET['ville_depart']) || isset($_GET['ville_arrivee']) || isset($_GET['date']))) {
+    if ($ville_depart && $ville_arrivee && $date && $time) {
+        $date_depart = $date . ' ' . $time . ':00';
+        
+        header("Location: admin/reserver/index.php?ville_depart=$ville_depart&ville_arrivee=$ville_arrivee&date=$date");
+        exit;
+    }
+}
+
+
+$sql1 = "SELECT * FROM Destination";
+$stmt1 = $connexion->query($sql1); 
+
+$option = "<option value='' disabled selected>Destination</option>"; 
+
+while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+    $option .= "<option value='" . $row["Id"] . "'";
+    if ($ville_arrivee == $row['Id']) {
+        $option .= " selected"; 
+    }
+    $option .= ">" . $row["Nom"] . "</option>";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,15 +66,13 @@
     <img id="logo_carpool" class="logo" src="imgs/logo carpool.png" alt="image">
     <div class="bg">
         <img id="image_background" src="imgs/background.jpg" class="rounded mx-auto d-block" alt="fond">
-    <form id="search-form">
-        <input class="form-control" type="text" id="input" placeholder="Ville de départ" required>
-        <select class="form-select" name="destination" id="destination" required>
-            <option value="" selected disabled hidden>Destination</option>
-            <option value="MNS">MNS</option>
-            <option value="IFA">IFA</option>
+    <form id="search-form" method="GET" action="/admin/reserver/index.php">
+        <input class="form-control" type="text" id="ville_depart" placeholder="Ville de départ" required>
+        <select class="form-select" name="Destination" id="Destination" placeholder="Destination" value="<?php $ville_arrivee ?>" required>
+            <?php echo $option ?>
         </select>
         <input class="form-control" type="date" id="date" name="date" required>
-        <input class="form-control" type="time" id="time" name="time" required>
+        <input class="form-control" type="time" id="time" name="date" required>
         <button class="recherche" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Rechercher</button>
     </form>
     </div>
