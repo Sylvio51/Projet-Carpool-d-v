@@ -30,14 +30,14 @@ if(isset($_GET['id']) AND $_GET['id'] > 0){
         </header>
         <main>
             <div class="photo-profil">
-                <img src="<?=$takeinfo["Photo_profil_utilisateur"] ?>" alt="">
+                <img src="<?=$_SERVER["Photo_profil_utilisateur"] ?>" alt="">
             </div>
-            <h1><?=$takeinfo['Nom_utilisateur']?> <?=$takeinfo['Prenom_utilisateur']?></h1>
-            <p class="promo">Promo : <?=$takeinfo['Id_promo_utilisateur']?></p>
+            <h1><?=$_SERVER['Nom_utilisateur']?> <?=$_SERVER['Prenom_utilisateur']?></h1>
+            <p class="promo">Promo : <?=$_SERVER['Id_promo_utilisateur']?></p>
             <p class="adresse"></p>
             <div class="contact">
-                <p>E-mail : <?=$takeinfo['Mail_utilisateur']?></p>
-                <p>Tel.: <?=$takeinfo['tel_utilisateur']?></p>
+                <p>E-mail : <?=$_SERVER['Mail_utilisateur']?></p>
+                <p>Tel.: <?=$_SERVER['tel_utilisateur']?></p>
             </div>
         </main>
         <footer>
