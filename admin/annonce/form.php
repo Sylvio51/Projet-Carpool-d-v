@@ -126,7 +126,7 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
         </div>
         <div class="loginHeader">
             <div class="whiteCercle">
-                <a href="/connexion.php"> <img id="logoLogin" src="/images/login.png" alt=""> </a>
+                <a href="/admin/profil.php"> <img id="logoLogin" src="/images/login.png" alt=""> </a>
             </div>
             <p>Connexion</p>
         </div>
