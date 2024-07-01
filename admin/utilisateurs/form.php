@@ -164,8 +164,8 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 </label>
             </div>
             <div class="button">
-                <button type="button" class="btn btn-primary btn-lg" id="buttonAnnuler">Annuler</button>
-                <button type="submit" class="btn btn-primary btn-lg" id="buttonAccepter">Créer un compte</button>
+                <a href="/accueil.php"> <button type="button" class="btn btn-primary btn-lg" id="buttonAnnuler">Annuler</button> </a>
+                <a href="/admin/index.php"> <button type="submit" class="btn btn-primary btn-lg" id="buttonAccepter">Créer un compte</button> </a>
             </div>
             <div class='text-danger'>
             <?php

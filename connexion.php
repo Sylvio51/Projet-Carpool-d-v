@@ -16,6 +16,8 @@ if(isset($_POST['envoi'])){
 
         $passwordAccount = $stmt->fetch();
 
+        echo $passwordAccount['Mot_de_passe_utilisateur'];
+
         $email = htmlspecialchars($_POST['Mail']);
         $password = password_verify($_POST['Mot_de_passe'], $passwordAccount['Mot_de_passe_utilisateur']);
 
