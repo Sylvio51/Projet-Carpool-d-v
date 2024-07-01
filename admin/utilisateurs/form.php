@@ -170,9 +170,9 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div class='text-danger'>
                 <?php
-                    if (isset($_POST['valide'])) {
-                        echo $MessageErreur;
-                    }
+                    // if (isset($_POST['valide'])) {
+                        // echo $MessageErreur;
+                    // }
                 ?>
             </div>
         </form>
