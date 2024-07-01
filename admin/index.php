@@ -86,7 +86,7 @@ while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
 <div data-aos="fade-right">
     <section id="publier_annonce">
         <div class="background-blue">
-            <button onclick="location.href='admin/annonce/form.php'" type="button" class="btn btn-primary"><i class="fa-solid fa-car"></i> Publier un trajet</button>
+            <button onclick="location.href='annonce/form.php'" type="button" class="btn btn-primary"><i class="fa-solid fa-car"></i> Publier un trajet</button>
             <p>Vous avez une voiture ?</p>
             <img class="route" src="/imgs/route.png" alt="route">
             <img class="batiment" src="/imgs/batiment.png" alt="batiment">
