@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/connect.php';
+
 $Nom_utilisateur = "";
 $Prenom_utilisateur = "";
 $Mail_utilisateur = "";
