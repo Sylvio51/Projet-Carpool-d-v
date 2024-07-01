@@ -5,7 +5,6 @@ try {
 } catch (PDOException $e) {
     echo "Erreur de connexion : " . $e->getMessage();
 }
-require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/include/protect.php';
 
 $ville_depart = isset($_GET['ville_depart']) ? $_GET['ville_depart'] : '';
 $ville_arrivee = isset($_GET['ville_arrivee']) ? $_GET['ville_arrivee'] : 0;
