@@ -166,13 +166,13 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div class="button">
                 <a href="/accueil.php"> <button type="button" class="btn btn-primary btn-lg" id="buttonAnnuler">Annuler</button> </a>
-                <a href="/admin/index.php"> <button type="submit" class="btn btn-primary btn-lg" id="buttonAccepter">Créer un compte</button> </a>
+                <a href="/admin/index.php"> <?session_start()?> <button type="submit" name="valide" class="btn btn-primary btn-lg" id="buttonAccepter">Créer un compte</button> </a>
             </div>
             <div class='text-danger'>
-            <?php
-                // if ($MessageErreur != "") {
-                    // echo $MessageErreur;
-                // }
+                <?php
+                    if (isset($_POST['valide'])) {
+                        echo $MessageErreur;
+                    }
                 ?>
             </div>
         </form>
