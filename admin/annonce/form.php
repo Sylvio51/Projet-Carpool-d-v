@@ -81,7 +81,7 @@ $options1 = "<option value='' disabled selected>Sélectionnez votre promo</optio
 
 while ($row = $stmt3->fetch(PDO::FETCH_ASSOC)) {
     $options1 .= "<option value='" . $row["Id"] . "'";
-    if ($Promo == $row['Id']) {
+    if ($Id_promo_utilisateur == $row['Id']) {
         $options1 .= " selected"; 
     }
     $options1 .= ">" . $row["Nom"] . "</option>";
