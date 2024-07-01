@@ -116,19 +116,20 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/admin/CSS/style_form.css">
     <title>Publier une annonce</title>
 </head>
 <body>
-<header>
-    <div data-aos="fade-right">
-    <div class="container">
-    <nav class="navbar navbar-expand-lg">
-    <a href="connexion.php">
-        <img class="connexion" src="/imgs/connexion.png" alt="connexion">
-    </a>
-        <img class="trip" src="/imgs/TRIP_lutfix.png" alt="trip-lutfix">
-    </div>
-    </nav>
+<header class="header">
+        <div class="logo">
+            <a href="/accueil.php"> <img id="logoCarpoolHeader" src="/images/logoCarpool.png" alt=""> </a>
+        </div>
+        <div class="loginHeader">
+            <div class="whiteCercle">
+                <a href="/connexion.php"> <img id="logoLogin" src="/images/login.png" alt=""> </a>
+            </div>
+            <p>Connexion</p>
+        </div>
     </header>
     <center>
     <h1 class="d'flex justify-content-center title">Publier un trajet</h1>
@@ -205,5 +206,10 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
     </form>
     </div>
     </div>
+    <footer class="footer">
+        <div class="logo">
+            <img id="logoCarpoolFooter" src="/images/logoCarpool.png" alt="">
+        </div>
+    </footer>
 </body>
 </html>
