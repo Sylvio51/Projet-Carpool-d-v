@@ -120,9 +120,9 @@ while ($row = $stmt4->fetch(PDO::FETCH_ASSOC)) {
     <title>Publier une annonce</title>
 </head>
 <body>
-<header class="header">
+    <header class="header">
         <div class="logo">
-            <a href="/accueil.php"> <img id="logoCarpoolHeader" src="/images/logoCarpool.png" alt=""> </a>
+            <a href="/admin/index.php"> <img id="logoCarpoolHeader" src="/images/logoCarpool.png" alt=""> </a>
         </div>
         <div class="loginHeader">
             <div class="whiteCercle">

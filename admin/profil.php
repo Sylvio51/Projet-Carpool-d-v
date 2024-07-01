@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/CSS/profil.css">
     <title>Profil</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/admin/CSS/style_form.css">
 </head>
 <body>
+    <header class="header">
+        <div class="logo">
+            <a href="/admin/index.php"> <img id="logoCarpoolHeader" src="/images/logoCarpool.png" alt=""> </a>
+        </div>
+        <div class="loginHeader">
+            <div class="whiteCercle">
+                <a href="/admin/profil.php"> <img id="logoLogin" src="/images/login.png" alt=""> </a>
+            </div>
+            <p>Connexion</p>
+        </div>
+    </header>
     <div class="container">
-        <header>
-            <a href="accueil.php">
-        <img src="imgs/logo carpool" alt="" class="carpool-logo">
-        </a>
-        </header>
         <main>
             <div class="photo-profil">
                 <img src="<?=$_SESSION["Photo_profil"] ?>" alt="">
@@ -26,9 +32,11 @@
                 <p>Tel.: <?=$_SESSION['tel']?></p>
             </div>
         </main>
-        <footer>
-            <img src="imgs/logo carpool" alt="Footer" class="footer-logo">
-        </footer>
     </div>
+    <footer class="footer">
+    <div class="logo">
+        <img id="logoCarpoolFooter" src="/images/logoCarpool.png" alt="">
+    </div>
+</footer>
 </body>
 </html>
