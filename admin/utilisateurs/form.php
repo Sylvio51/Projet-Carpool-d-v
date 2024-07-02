@@ -66,7 +66,7 @@ if (isset($_POST['Mot_de_passe']) && isset($_POST['Confirmation_mot_de_passe']))
                 echo "Compte créé avec succès.";
                 session_start();
                 $_SESSION['Nom'] = $Nom_utilisateur . " " . $Prenom_utilisateur;
-                header("Location:index.html");
+                header("Location: /admin/index.php");
                 exit();
             } else {
                 echo "Une erreur s'est produite lors de la création du compte.";
@@ -166,7 +166,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div class="button">
                 <a href="/accueil.php"> <button type="button" class="btn btn-primary btn-lg" id="buttonAnnuler">Annuler</button> </a>
-                <a href="/admin/index.php"> <?session_start()?> <button type="submit" name="valide" class="btn btn-primary btn-lg" id="buttonAccepter">Créer un compte</button> </a>
+                <button type="submit" name="valide" class="btn btn-primary btn-lg" id="buttonAccepter">Créer un compte</button>
             </div>
             <div class='text-danger'>
                 <?php
