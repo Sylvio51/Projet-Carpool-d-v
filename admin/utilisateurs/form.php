@@ -65,7 +65,7 @@ if (isset($_POST['Mot_de_passe']) && isset($_POST['Confirmation_mot_de_passe']))
             if ($stmt->execute()) {
                 echo "Compte créé avec succès.";
                 session_start();
-                $_SESSION['Nom'] = $Nom_utilisateur . " " . $Prenom_utilisateur;
+                $_SESSION['connecter'] = "je suis connecté";
                 header("Location: /admin/index.php");
                 exit();
             } else {
